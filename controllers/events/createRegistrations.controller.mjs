@@ -356,6 +356,7 @@ function createRegistrationsController(
       next(error);
     }
   }
+  
 
   return {
     saveProject,
