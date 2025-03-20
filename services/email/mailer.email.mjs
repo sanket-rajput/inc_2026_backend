@@ -66,7 +66,7 @@ function emailService() {
 				text: 'Email content',
 				html: await emailTemplates.eventRegistrationEmail(dynamicData),
 			};
-			eventEmailTransporter.sendMail(mailOptions).then(() => { }).catch((e) => { console.log(e) });
+			eventEmailTransporter.sendMail(mailOptions).then(() => {}).catch((e) => { console.log(e) });
 			return "Emails sent successfully";
 		} catch (err) {
 			throw err;
@@ -92,7 +92,7 @@ function emailService() {
 				text: 'Email content',
 				html: await emailTemplates.judgeRegistrationEmail(judge)
 			}
-			eventEmailTransporter.sendMail(mailOptions).then(() => { }).catch((e) => { console.log(e) });
+			eventEmailTransporter.sendMail(mailOptions).then(() => {}).catch((e) => { console.log(e) });
 			return "judging mail sent successfully"
 		} catch (err) { throw err }
 	}

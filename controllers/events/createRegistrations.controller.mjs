@@ -317,13 +317,12 @@ function createRegistrationsController(
       //   const credentials = results.credentials;
       //   const judges = JSON.parse(readFileSync(path.join(__dirname, 'judges.json')));
       //   const slotsData = getJudgingSlots('concepts');
-      //   const data = [];
-
+        
       //   const processProjectName = (pname) => {
-      //     const temp = pname.replace('-', '').replace('P', '').replace(' ', '');
+      //     const temp = pname.replace('P', '').replace(' ', '');
       //     return temp;
       //   }
-    
+        
       //   judges.forEach((judge) => {
       //     if(judge.email){
       //       const temp = {
@@ -331,10 +330,11 @@ function createRegistrationsController(
       //         name: judge.name?.split(' ')[0] || 'Sir/Mam',
       //         email: judge.email,
       //         projects: judge.projects.map((project) => {
-      //           return projects.find((p) => p.pid == `CO-${processProjectName(project)}`)
+      //           // return projects.find((p) => p.pid == `CO-${processProjectName(project)}`);
+      //           return projects.find((p) => p.pid == processProjectName(project));
       //         }),
       //         password: credentials.find((item) => item.username == judge.email)?.password || 'Contact Admin',
-      //         slots: JSON.parse(judge.slots)
+      //         slots: JSON.parse(`[${judge.slots}]`)
       //         .map(slot => parseInt(slot))
       //         .sort((a, b) => a - b)
       //         .map(slot => slotsData[slot])
@@ -343,13 +343,12 @@ function createRegistrationsController(
       //       data.push(temp);
       //     }
       //   })
-    
       //   return data;
       // }
 
       // const data = preprocessData(results);
 
-      // emailService.sendBulkEmail(data);
+      // await emailService.sendBulkEmail(data);
 
       return res.json('mail sent successfully');
     } catch (error) {

@@ -5,10 +5,10 @@ import * as ejs from 'ejs';
 const __dirname = path.resolve()
 const eventsTemplate = readFileSync(__dirname + '/views/emails/eventRegistration.email.ejs', 'utf8')
 const judgeTemplate = readFileSync(__dirname + '/views/emails/judgeRegistration.email.ejs', 'utf8')
-const onlineConceptsJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/online.concepts.judgeAllocation.email.ejs', 'utf8')
+const onlineConceptsJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/onlineJudge.email.ejs', 'utf8')
 const offlineConceptsJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/offlineJudge.email.ejs', 'utf8')
-const offlineImpetusJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/offline.impetus.judgeAllocation.email.ejs', 'utf8')
-const onlineImpetusJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/online.impetus.judgeAllocation.email.ejs', 'utf8')
+const offlineImpetusJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/offline.impetus.email.ejs', 'utf8')
+const onlineImpetusJudgeAllocationTemplate = readFileSync(__dirname + '/views/emails/online.impetus.email.ejs', 'utf8')
 
 async function eventRegistrationEmail(data) {
     try {

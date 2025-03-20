@@ -183,7 +183,7 @@ function eventsServices(db) {
 
       const [credentials] = await db.execute(`SELECT username, password FROM inc_2025.admin WHERE roles LIKE '%JUDGE%';`)
       .catch((err) => console.log(err));
-
+      
       return { projects, credentials };
 
     } catch (error) {
