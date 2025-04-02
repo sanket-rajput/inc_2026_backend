@@ -62,8 +62,9 @@ function getRegistrationsController(
         }))
         return teams;
       }
-      const filteredResults = results.map((item, index) => ({
-        id: index,
+      
+      const filteredResults = results.map((item, index) => {
+        return {id: index,
         pid: item.pid,
         judges_count: item.judges_count || 0,
         evaluations: item.evaluations || "N/A",
@@ -92,7 +93,8 @@ function getRegistrationsController(
           mode: item.mode,
         },
         paymentId: item.payment_id,
-      }))
+        }
+      })
       res.status(302).json(filteredResults);
     } catch (err) {
       next(err);

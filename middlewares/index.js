@@ -14,9 +14,11 @@ function initializeMiddlewares(dbService) {
     function useDefaultMiddlewares(server) {
         server.use([
             cors({
-                origin: true,
-                credentials: true,
-                preflightContinue: true,
+                origin: process.env.FRONTEND_URL, // Specify the allowed origin
+                credentials: true, // Allow cookies and authorization headers
+                methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+                allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+                preflightContinue: false,
             }), // Allow Cross-Origin requests,
             helmet(), // Set security HTTP headers
             cookieParser(process.env.COOKIE_SECRET), // Parse Cookie header and populate req.signedCookie with an object keyed by the cookie names

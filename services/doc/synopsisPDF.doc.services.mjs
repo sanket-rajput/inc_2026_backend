@@ -27,8 +27,8 @@ const printer = new PdfPrinter({
 
 function createSynopsis(projects, event_name) {
   const coverImages = {
-    cover1_concepts: readFileSync(path.join(__dirname, 'static/cover-pages/1.jpg')),
-    cover1_impetus: readFileSync(path.join(__dirname, 'static/cover-pages/2.jpg')),
+    cover1_concepts: readFileSync(path.join(__dirname, 'static/cover-pages/2.jpg')),
+    cover1_impetus: readFileSync(path.join(__dirname, 'static/cover-pages/1.jpg')),
     cover2: readFileSync(path.join(__dirname, 'static/cover-pages/3.jpg')),
     cover3: readFileSync(path.join(__dirname, 'static/cover-pages/4.jpg')),
     cover4: readFileSync(path.join(__dirname, 'static/cover-pages/5.jpg')),
