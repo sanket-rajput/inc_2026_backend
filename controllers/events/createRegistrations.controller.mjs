@@ -289,18 +289,18 @@ function createRegistrationsController(
         email: req.body.email,
         department: req.body.department
       };
-      // // // console.log(newData);
-      // switch (event_name) {
-      //   case eventsName[0]:
-      //     const result = await eventsServices.insertPICT(newData)
-      //     res.status(200).send(result);
-      //     break;
+       console.log(newData);
+      switch (event_name) {
+        case eventsName[0]:
+          const result = await eventsServices.insertPICT(newData)
+          res.status(200).send(result);
+          break;
 
-      //   case eventsName[1]:
-      //     const results = await eventsServices.insertImpetusPICT(newData)
-      //     res.status(200).send(results);
-      //     break;
-      // }
+        case eventsName[1]:
+          const results = await eventsServices.insertImpetusPICT(newData)
+          res.status(200).send(results);
+          break;
+      }
     } catch (err) {
       next(err);
     }
@@ -352,7 +352,7 @@ function createRegistrationsController(
 
       // await emailService.sendBulkEmail(results);
 
-      // await emailService.sendBulkEmail(results);
+      // await emailService.sendBulkEmail(results); 
 
       return res.json('mail sent successfully');
     } catch (error) {
