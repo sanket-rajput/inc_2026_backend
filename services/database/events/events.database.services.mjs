@@ -29,18 +29,33 @@ function eventsServices(db) {
     }
   }
 
+  // async function getTicketDetails(ticket) {
+  //   try {
+  //     const [[results]] = await db
+  //       .execute(ticketQueries.checkTicket, [ticket])
+  //       .catch((err) => {
+  //         throw new AppError(400, "fail", err.sqlMessage);
+  //       });
+  //     return results[0];
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // }
   async function getTicketDetails(ticket) {
-    try {
-      const [[results]] = await db
-        .execute(ticketQueries.checkTicket, [ticket])
-        .catch((err) => {
-          throw new AppError(400, "fail", err.sqlMessage);
-        });
-      return results[0];
-    } catch (err) {
-      throw err;
-    }
+  try {
+    if (!ticket) return null; // ✅ guard
+
+    const [rows] = await db.execute(
+      ticketQueries.checkTicket,
+      [ticket]
+    );
+
+    return rows[0] || null; // ✅ SAFE
+  } catch (err) {
+    throw err;
   }
+}
+
 
   async function getMembersFromTicket(ticket) {
     try {

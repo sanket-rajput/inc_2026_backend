@@ -10,6 +10,7 @@ function createEventsRouter(eventsServices, filesServices, emailService, middlew
 	const { getPaymentDetails, getTicketDetails, getUserIDFile, getUserRegistration, getRegistration, getRegistrations, getPendingPayments, getSynopsis, getProjectAbstract, updateProjectAbstract, backupRegs, getRegistrationsCount, getIncompleteRegistrations, } = getRegistrationsController(eventsServices, filesServices, docServices)
 	const { saveProject, insertMember, getAddedMembers, saveCollegeDetails, requestRegistration, verifyPendingPayment, updateProject, insertInternalPICT, deleteMember, getTechfiestaMembers, addTechfiestaMembers, getAllTeamLeaders, } = createRegistrationsController(eventsServices, filesServices, emailService)
 
+	// Static routes first (non-parametric)
 	eventsRouter.get('/ticket', getTicketDetails)
 	// get registrations count
 	eventsRouter.get('/registrations-count', verifyAdminValidation(3), validator, verifyAdminLogin, getRegistrationsCount);
@@ -35,16 +36,16 @@ function createEventsRouter(eventsServices, filesServices, emailService, middlew
 	// get registration status
 	eventsRouter.get('/verify/registration', getRegistrationValidation(), validator, getRegistration)
 
-	eventsRouter.get('/:event_name/synopsis', getSynopsis)
-	eventsRouter.get('/verify/user/:event_name', eventNameParamValidation(), getUserRegistrationValidation(), validator, getUserRegistration)
-
-	eventsRouter.patch('/:event_name/:pid', verifyAdminValidation(2), validator, verifyAdminLogin, updateProject)
-	eventsRouter.post('/:event_name/internal', insertInternalPICT)
-
+	// Team leaders
 	eventsRouter.get('/team-leaders', getAllTeamLeaders);
+
+	// Backup
+	eventsRouter.get('/backupRegs', backupRegs)
 	
+	// Registration limiter applied before step routes
 	eventsRouter.use(registrationLimiter)
 	
+	// Step routes (with rate limiter)
 	eventsRouter.post('/step_1', saveProject)
 	eventsRouter.post('/step_2', memberIDParser, formDataParser, insertMember);
 	eventsRouter.get('/getmemberdetails', getAddedMembers)
@@ -58,7 +59,11 @@ function createEventsRouter(eventsServices, filesServices, emailService, middlew
 	eventsRouter.post('/getabstract', getProjectAbstract)
 	eventsRouter.post('/updateabstract', updateProjectAbstract)
 
-	eventsRouter.get('/backupRegs', backupRegs)
+	// Parametric routes (catch-all) - MUST come last
+	eventsRouter.get('/:event_name/synopsis', getSynopsis)
+	eventsRouter.get('/verify/user/:event_name', eventNameParamValidation(), getUserRegistrationValidation(), validator, getUserRegistration)
+	eventsRouter.post('/:event_name/internal', insertInternalPICT)
+	eventsRouter.patch('/:event_name/:pid', verifyAdminValidation(2), validator, verifyAdminLogin, updateProject)
 
 	return eventsRouter
 }
