@@ -12,7 +12,7 @@ async function cloudinaryUpload(fileName,email ) {
     // Upload an image
      const uploadResult = await cloudinary.uploader
        .upload(
-           "./"+ fileName, {
+           fileName, {
                public_id: email,
            }
        )
