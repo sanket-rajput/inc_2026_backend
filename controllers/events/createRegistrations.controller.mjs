@@ -226,6 +226,9 @@ console.log("payment id:", results?.[0]?.payment_id);
         req.body = { ...req.body, team_id: team_id || '' };
         try {
           console.log("HELLO  i am here before saveregistration");
+          // First update payment_id and step_no to 4
+          await eventsServices.editPaymentAndStep({ ...req.body, ticket }, 4);
+          // Then save the full registration details
           await eventsServices.saveRegistrationDetails({ ...req.body, ticket, event }, 4);
            console.log("✅ SAVE SUCCESS step4");
         } catch (e) {
@@ -338,7 +341,9 @@ console.log("payment id:", results?.[0]?.payment_id);
     try {
       const { ticket } = req.body;
       const { event_name } = req.params;
-      const results = await eventsServices.getTicketDetails(ticket);
+      let results = await eventsServices.getTicketDetails(ticket);
+      if (!results) throw new AppError(404, "fail", "Ticket does not exist");
+      results = results?.[0];
       if (!results) throw new AppError(404, "fail", "Ticket does not exist");
       if (results.step_no === 4) {
         const { pid } = await eventsServices.completeRegistration(
