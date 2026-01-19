@@ -210,7 +210,14 @@ function createRegistrationsController(
           }
         }
         req.body = { ...req.body, team_id: team_id || '' };
-        await eventsServices.saveRegistrationDetails({ ...req.body, ticket, event }, 4);
+        try {
+          await eventsServices.saveRegistrationDetails({ ...req.body, ticket, event }, 4);
+           console.log("✅ SAVE SUCCESS step4");
+        } catch (e) {
+          console.log("❌ SAVE FAILED step4", e);
+  throw e;
+        }
+        
         res.status(201).json({success: true, ticket}).end()
       } else if (results.step_no === 5 && results.payment_id !== "")
         throw new AppError(
