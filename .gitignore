@@ -111,8 +111,14 @@ dist
 test
 
 # uploaded files
-uploads
+uploads/
 
 .ssh
 
 ca-cert.pem
+
+# images
+*.png
+*.jpg
+*.jpeg
+*.webp
