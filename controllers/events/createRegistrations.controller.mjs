@@ -179,14 +179,14 @@ function createRegistrationsController(
 
   async function requestRegistration(req, res, next) {
     try {
-      console.log("✅ STEP 4 CONTROLLER HIT", req.query);
-
-
+    
       const { event, ticket } = req.query;
 
       let results = await eventsServices.getTicketDetails(ticket);
-      console.log(results);
+   
       if (!results) throw new AppError(404, "fail", "Ticket does not exist");
+
+      console.log(results);
       if (results.payment_id !== "")  
         throw new AppError(
           400,
