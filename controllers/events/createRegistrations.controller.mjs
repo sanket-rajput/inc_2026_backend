@@ -186,7 +186,7 @@ function createRegistrationsController(
    
       if (!results) throw new AppError(404, "fail", "Ticket does not exist");
 
-      console.log(results.payment_id);
+      console.log(results[0].payment_id);
 
       if (results.payment_id !== "")  
         throw new AppError(
