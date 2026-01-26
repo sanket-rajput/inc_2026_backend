@@ -99,8 +99,8 @@ const projectDomains = {
 const projectTypes = ['Open Software', 'Open Hardware/Firmware']
 
 const teamSize = new Map([
-    ['concepts', 5],
-    ['impetus', 5],
+    ['concepts', 6],
+    ['impetus', 6],
     ['pradnya', 2],
     ['nova', 5],
 ])
