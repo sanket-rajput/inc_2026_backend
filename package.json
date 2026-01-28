@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/InC-Web-Team/inc_23_website_backend#readme",
   "engines": {
-    "node": ">=18.14.0"
+    "node": "18.14.0"
   },
   "dependencies": {
     "cloudinary": "^2.5.1",
